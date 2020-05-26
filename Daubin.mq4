@@ -8,7 +8,7 @@
 
 const int time = 3600;
 const int period = PERIOD_H1;
-const string symbol = "USDJPY";
+const string symbol = "EURJPY";
 Trader trader(symbol, period);
 int h = 0;
 //+------------------------------------------------------------------+

@@ -3,13 +3,19 @@
 //|                        Copyright 2020, MetaQuotes Software Corp. |
 //|                                             https://www.mql5.com |
 //+------------------------------------------------------------------+
+
+// New version is using the chart for everything
+// Since this can be attached to multiple charts
+// Might not work on a remote computer so will keep things the same
+// with the all the modular classes still accepting the symbol type in constructor.
+
 #include "Trader.mqh"
 #property strict
 
 const int time = 3600;
-const int period = PERIOD_H1;
-const string symbol = "USDJPY";
-Trader trader(symbol, period);
+const int period = Period();
+const int symbol = Symbol();
+Trader trader(Symbol(), Period());
 int h = 0;
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
@@ -29,7 +35,6 @@ void OnDeinit(const int reason)
   {
 //--- destroy timer
    EventKillTimer();
-   
   }
 //+------------------------------------------------------------------+
 //| Expert tick function                                             |
@@ -39,7 +44,12 @@ void OnTick() {
    int hTemp = TimeHour(TimeCurrent());
    if(hTemp == h) return;
    h = hTemp;
-   trader.Calculate(true);
+   if(h > 16 || h < 4){
+      trader.Calculate(false);
+   }
+   else {
+      trader.Calculate(true);
+   }
    
 }
 //+------------------------------------------------------------------+

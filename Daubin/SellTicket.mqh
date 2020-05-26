@@ -1,13 +1,13 @@
-#ifndef Buy_TICKET_H
-#define Buy_TICKET_H
+#ifndef Sell_TICKET_H
+#define Sell_TICKET_H
 
 #include "OrderTicket.mqh"
 
 // Child class for Order Ticket
 // Used for going long on an order
-class BuyTicket: public OrderTicket {
+class SellTicket: public OrderTicket {
    public:
-      BuyTicket(const string, int);   // Constructor
+      SellTicket(const string, int);   // Constructor
       
    protected:
       bool OrderChild();

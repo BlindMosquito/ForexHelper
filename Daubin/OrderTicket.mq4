@@ -1,13 +1,13 @@
 #include "OrderTicket.mqh"
 
-OrderTicket::OrderTicket(string symbol, int period) : symbol(symbol), period(period) { ResetVariables(); atr = new Atr(); }
-OrderTicket::~OrderTicket() { if(atr) delete atr; }
+OrderTicket::OrderTicket(const string txt, int time) : symbol(txt), period(time), stopMove(false) { ResetVariables(); atr = new Atr(symbol, period); }
+OrderTicket::~OrderTicket() { if(atr) delete atr; ForceClose(); }
 
 // Tests if there is an open ticket
 bool OrderTicket::Calculate() {
-      if(!ticket) return false;                 // If ticket does not exist return fals
+      if(!ticket) return false;                 // If ticket does not exist return false
       if(!TestTicket()) return false;           // If ticket is now closed then leave
-      TestStopLosss();                          // Test if Stop loss needs to change
+      AdjustStopLoss();
       return true;
 }
 
@@ -17,17 +17,13 @@ void OrderTicket::ResetVariables() {
       ticket = 0;
       orderPrice = 0;
       stopLoss = 0;
-      trail = false;
       takeProfit = 0;
-      current = 0;
       lot = 0;
 }
 
 // Tests if ticket is still open
 bool OrderTicket::Order() {
       if(ticket) return true;                         // Should be no ticket
-      double mfi = iMFI(symbol, period, 14, 0);       // Get momentum of candle
-      if(mfi < 40) return false;                      // Momentum should be over value
       return OrderChild();                            // Call child to place order
 }
 
@@ -40,4 +36,12 @@ bool OrderTicket::TestTicket() {
       }
       ResetVariables();                         // Reset everything if order is closed
       return false;
+}
+
+
+// Force Close the Order
+// Don't know why, but do not leave order open
+void OrderTicket::ForceClose() {
+      if(ticket)
+      ChildClose();
 }

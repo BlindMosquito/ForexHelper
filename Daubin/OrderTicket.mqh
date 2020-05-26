@@ -9,27 +9,31 @@
 // This is an Abstract Parent Class
 class OrderTicket {
    public:
-      OrderTicket(string symbol, int period);   // Constructor
+      OrderTicket(const string, int);   // Constructor
       virtual ~OrderTicket();    // Deconstructor
       virtual bool Calculate();  // Tests if Ticket is still valid
-      virtual bool Order() = 0;  // Starts the order process - Abstract Method
+      bool Order();              // Starts the order process - Abstract Method
+      void ForceClose();         // Force Close the Order
    protected:
       // Variables
       string symbol;             // The symbol for the currency pair
       int period;                // The period of the curriency pair tested
       bool open;                 // Keeps track if order is open
-      int ticket;                // Ticket of Order
+      int ticket;                 // Ticket of Order
       double orderPrice;         // Price at Order
-      double stopLoss;           // Current Stop Loss Price - Will Change With Trailing Stop Loss Once Take Profit achieved
+      double stopLoss;           // Current Stop Loss Price
       double takeProfit;         // Take Profit Determined at Order - Same as Stop Loss at Order
-      double current;            // The last price of the market when checked. Used in conjunction with trailing stop
       double lot;                // The current lot bought or sold
+      bool stopMove;             // True if price has been adjusted
       // Class variables
       Atr * atr;                 // Atr class pointer - Will need to have deconstructor for this
       
       // Functions
       void ResetVariables();     // Resets all the trade variables back to 0;
-      virtual void TestStopLoss() = 0;       // Tests the stop loss;
+      bool TestTicket();         // Test if Ticket is open
+      virtual bool AdjustStopLoss() = 0;     // Adjust your stoploss
+      virtual bool OrderChild() = 0;  // For the child to create order
+      virtual bool ChildClose() = 0;   // Close the open order
 };
 
 #endif
