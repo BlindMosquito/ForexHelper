@@ -1,30 +1,32 @@
 #ifndef TRADER_H
 #define TRADER_H
 
-#include  "Atr.mqh"
-#include  "baseline.mqh"
+#include "baseline.mqh"
+#include "ExitIndicator.mqh"
+#include "SellTicket.mqh"
+#include "BuyTicket.mqh"
+#include "VolumeIndicator.mqh"
 
 class Trader {
    public:
-      Trader(string, int);
+      Trader(const string, int);
       ~Trader();
-      int Calculate(bool canTrade);  //
+      bool Calculate(bool canTrade);
    private:
+      // Properties
       string symbol;
       int period;
-      int progress;     // 0 means no trade, -1 sell, 1 buy
-      int ticket;       // the ticket belonging to the order
-      double stopLoss;  // Keep track of stop loss for trail
-      double current;   // Keep track of current price
-      double lot;       // lot size taken
-      Atr * atr;
-      Baseline * base;
+      bool inProgress;        // Tests if a trade is open
+
+      // Class Variables 
+      Baseline * base;        // Baseline tells if ready to buy or sell
+      VolumeIndicator * volume;  // Determines the volume
+      ExitIndicator * exit;   // Exit Indicator
+      OrderTicket * order;    // Makes a Long or Short Order
       
-      bool BuyOrder();
-      bool SellOrder();
-      int TestTicket();
-      void TrailStopBuy();
-      void TrailStopSell();
+      // Functions
+      bool TestExistOrder();    // Test Order if it exists
+      bool TestNewOrder(bool canTrade);      // Test If New Order can happen
 };
 
 #endif 

@@ -1,0 +1,8 @@
+LIBRARY ObjectsTest
+
+EXPORTS InitStrategy
+	DoneStrategy
+	ResetStrategy
+	GetSingleTick
+	ReplaceStr
+	IntrfProcsRec

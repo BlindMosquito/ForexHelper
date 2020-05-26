@@ -1,0 +1,35 @@
+#ifndef EXITINDICATOR_H
+#define EXITINDICATOR_H
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Abstract class to determine when to close trade
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+class ExitIndicator {
+   public:
+      ExitIndicator(const string, int);// Constructor
+      virtual bool Calculate() = 0;    // Tests if trade should close
+   protected:
+      string symbol;                   // Currency Pair
+      int period;                      // Timeframe testing
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Use of RVI when lines overlap as exit indicator
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+class RviExit : public ExitIndicator {
+   public:
+      RviExit(const string, int);      // Constructor
+      bool Calculate();                // Tests if trade should close
+   private:
+      double green;                    // The main mode value
+      double red;                      // The signal mode value
+      bool greenTop;                   // True if Green is on top and False if it is on bottom
+      
+      void SetLines();                 // Sets the green and red lines
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#endif 
