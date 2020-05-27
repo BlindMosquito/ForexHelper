@@ -1,10 +1,16 @@
-﻿  ObjectsTest.cpp
-ObjectsTest.obj : warning LNK4197: export 'ReplaceStr' specified multiple times; using first specification
-     Creating library C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.lib and object C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.exp
-DaubinTester.exp : warning LNK4070: /OUT:ObjectsTest.dll directive in .EXP differs from output filename 'C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.dll'; ignoring directive
-  Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 18 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-DaubinTester.exp : warning LNK4070: /OUT:ObjectsTest.dll directive in .EXP differs from output filename 'C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.dll'; ignoring directive
-  DaubinTester.vcxproj -> C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.dll
+﻿  IndicatorBase.cpp
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(646,44): error C3861: 'RGB': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1079,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1079,6): error C2146: syntax error: missing ';' before identifier 'APIENTRY'
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1080,1): error C2143: syntax error: missing ';' before '{'
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1080,1): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1111,3): error C3861: 'free': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1112,24): error C3861: 'strlen': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1112,17): error C3861: 'malloc': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1113,3): error C3861: 'strcpy': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1608,41): error C3861: 'strlen': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1608,34): error C3861: 'malloc': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1609,3): error C3861: 'strcpy': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1610,3): error C3861: 'strcat': identifier not found
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\StrategyInterfaceUnit.h(1615,3): error C3861: 'free': identifier not found
+  ObjectsTest.cpp

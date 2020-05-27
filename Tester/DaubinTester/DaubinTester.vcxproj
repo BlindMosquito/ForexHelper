@@ -142,10 +142,16 @@
     <None Include="ObjectsTest.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Atr.h" />
+    <ClInclude Include="ForexHelper.h" />
+    <ClInclude Include="IndicatorBase.h" />
     <ClInclude Include="StrategyInterfaceUnit.h" />
     <ClInclude Include="TechnicalFunctions.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Atr.cpp" />
+    <ClCompile Include="ForexHelper.cpp" />
+    <ClCompile Include="IndicatorBase.cpp" />
     <ClCompile Include="ObjectsTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
