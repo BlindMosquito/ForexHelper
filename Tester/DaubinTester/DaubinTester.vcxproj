@@ -145,7 +145,8 @@
     <ClInclude Include="Atr.h" />
     <ClInclude Include="ForexHelper.h" />
     <ClInclude Include="IndicatorBase.h" />
-    <ClInclude Include="StrategyInterfaceUnit.h" />
+    <ClInclude Include="StrategyConnecter.h" />
+    <ClInclude Include="StrategyFunctions.h" />
     <ClInclude Include="TechnicalFunctions.h" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,8 @@
     <ClCompile Include="ForexHelper.cpp" />
     <ClCompile Include="IndicatorBase.cpp" />
     <ClCompile Include="ObjectsTest.cpp" />
+    <ClCompile Include="StrategyFunctions.cpp" />
+    <ClCompile Include="TechnicalFunctions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

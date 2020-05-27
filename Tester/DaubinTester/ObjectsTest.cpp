@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "StrategyInterfaceUnit.h"
+#include "StrategyFunctions.h"
 #include "TechnicalFunctions.h"
 #include <ctime>
 
@@ -8,12 +8,12 @@ char* Currency = NULL;
 int Timeframe;
 
 EXPORT void InitStrategy() {
-  StrategyShortName("ObjectsTest");
-  StrategyDescription("Test of moving objects");
+  StrategyFunctions::StrategyShortName("ObjectsTest");
+  StrategyFunctions::StrategyDescription("Test of moving objects");
 
-  RegOption("Currency", ot_Currency, &Currency);
+  StrategyFunctions::RegOption("Currency", ot_Currency, &Currency);
 
-  RegOption("Timeframe", ot_TimeFrame, &Timeframe);
+  StrategyFunctions::RegOption("Timeframe", ot_TimeFrame, &Timeframe);
   Timeframe = PERIOD_M15;
 }
 
@@ -25,10 +25,10 @@ EXPORT void ResetStrategy() {}
 
 EXPORT void GetSingleTick() {
     
-    if (GetNumberOfOpenPositions() < 1) {
-        double stopLoss = Ask() - (100* Point());
-        double stopProfit = Ask() + (50* Point());
-        Buy(0.1, stopLoss, stopProfit);
+    if (TechnicalFunctions::GetNumberOfOpenPositions() < 1) {
+        double stopLoss = StrategyFunctions::Ask() - (100* StrategyFunctions::Point());
+        double stopProfit = StrategyFunctions::Ask() + (50* StrategyFunctions::Point());
+        StrategyFunctions::Buy(0.1, stopLoss, stopProfit);
     }
 
 }
