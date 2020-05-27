@@ -1,0 +1,10 @@
+﻿  ObjectsTest.cpp
+ObjectsTest.obj : warning LNK4197: export 'ReplaceStr' specified multiple times; using first specification
+     Creating library C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.lib and object C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.exp
+DaubinTester.exp : warning LNK4070: /OUT:ObjectsTest.dll directive in .EXP differs from output filename 'C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.dll'; ignoring directive
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 18 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+DaubinTester.exp : warning LNK4070: /OUT:ObjectsTest.dll directive in .EXP differs from output filename 'C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.dll'; ignoring directive
+  DaubinTester.vcxproj -> C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.dll

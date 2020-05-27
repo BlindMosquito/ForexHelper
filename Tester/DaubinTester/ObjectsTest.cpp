@@ -24,15 +24,11 @@ EXPORT void DoneStrategy() {
 EXPORT void ResetStrategy() {}
 
 EXPORT void GetSingleTick() {
-    time_t now = time(0);
-    tm* local = localtime(&now);
-    int hour = local->tm_hour;
-    int handle = 0;
-    if (hour == 8 && OrdersTotal == 0) {
+    
+    if (GetNumberOfOpenPositions() < 1) {
         double stopLoss = Ask() - (100* Point());
         double stopProfit = Ask() + (50* Point());
-
-        SendInstantOrder(Symbol(), op_Buy, 0.1, stopLoss, stopProfit, "NA", 0, handle);
+        Buy(0.1, stopLoss, stopProfit);
     }
-    
+
 }
