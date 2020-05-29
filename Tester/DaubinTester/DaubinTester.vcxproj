@@ -85,7 +85,8 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -111,7 +112,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -143,17 +145,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Atr.h" />
-    <ClInclude Include="ForexHelper.h" />
-    <ClInclude Include="IndicatorBase.h" />
+    <ClInclude Include="Baseline.h" />
+    <ClInclude Include="Order.h" />
+    <ClInclude Include="ProgramFlow.h" />
     <ClInclude Include="StrategyConnecter.h" />
     <ClInclude Include="StrategyFunctions.h" />
     <ClInclude Include="TechnicalFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Atr.cpp" />
-    <ClCompile Include="ForexHelper.cpp" />
-    <ClCompile Include="IndicatorBase.cpp" />
+    <ClCompile Include="Baseline.cpp" />
     <ClCompile Include="ObjectsTest.cpp" />
+    <ClCompile Include="Order.cpp" />
+    <ClCompile Include="ProgramFlow.cpp" />
     <ClCompile Include="StrategyFunctions.cpp" />
     <ClCompile Include="TechnicalFunctions.cpp" />
   </ItemGroup>

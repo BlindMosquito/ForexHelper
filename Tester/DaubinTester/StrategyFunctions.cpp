@@ -6,7 +6,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-
 extern "C" { __declspec(dllexport) TInterfaceProcRec IntrfProcsRec; }
 
 //-----------------------------------------------------------------------------
@@ -38,6 +37,8 @@ BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, LPVOID lpReserved)
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #define rec IntrfProcsRec
+
+
 
 //-----Replace PChar string with new one--------------------------------------
 #pragma comment(linker, "/EXPORT:ReplaceStr=_ReplaceStr@8")
@@ -732,5 +733,4 @@ bool StrategyFunctions::CloseOrderPartial(int OrderHandle, double LotSize)
     if (rec.CloseOrderPartial == NULL) return false;
     return rec.CloseOrderPartial(rec.pCloseOrderPartial, OrderHandle, LotSize);
 }
-
 #undef rec

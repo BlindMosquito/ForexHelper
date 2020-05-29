@@ -1,6 +1,5 @@
 #pragma once
 #include "StrategyConnecter.h"
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //-------------------------------------------
@@ -483,7 +482,7 @@ struct TInterfaceProcRec {
 #pragma pack(pop)
 
 
-class StrategyFunctions {
+class __declspec(dllexport)  StrategyFunctions {
 	public:
         //-----Sell-------------------------------------------------------------------
         static int Sell(double LotSize, double StopLoss, double TakeProfit);
@@ -764,4 +763,5 @@ class StrategyFunctions {
         //-----Close part of position-------------------------------------------------
         static bool CloseOrderPartial(int OrderHandle, double LotSize);
 };
+
 

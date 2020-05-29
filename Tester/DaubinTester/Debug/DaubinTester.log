@@ -1,2 +1,6 @@
-﻿  ObjectsTest.cpp
-  DaubinTester.vcxproj -> C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Debug\DaubinTester.dll
+﻿  Atr.cpp
+  TechnicalFunctions.cpp
+  Generating Code...
+  LINK : C:\Users\Drew\web\Daubin\Tester\DaubinTester\Debug\DaubinTester.dll not found or not built by the last incremental link; performing full link
+     Creating library C:\Users\Drew\web\Daubin\Tester\DaubinTester\Debug\DaubinTester.lib and object C:\Users\Drew\web\Daubin\Tester\DaubinTester\Debug\DaubinTester.exp
+  DaubinTester.vcxproj -> C:\Users\Drew\web\Daubin\Tester\DaubinTester\Debug\DaubinTester.dll

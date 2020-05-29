@@ -1,4 +1,4 @@
-LIBRARY ObjectsTest
+LIBRARY DaubinTester
 
 EXPORTS InitStrategy
 	DoneStrategy

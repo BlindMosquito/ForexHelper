@@ -26,16 +26,19 @@
     <ClInclude Include="Atr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ForexHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IndicatorBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StrategyFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StrategyConnecter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramFlow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Baseline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -46,16 +49,19 @@
     <ClCompile Include="Atr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ForexHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IndicatorBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StrategyFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TechnicalFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramFlow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Baseline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Order.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

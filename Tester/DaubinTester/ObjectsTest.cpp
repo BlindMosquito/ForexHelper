@@ -2,33 +2,31 @@
 #include "StrategyFunctions.h"
 #include "TechnicalFunctions.h"
 #include <ctime>
+#include "ProgramFlow.h"
 
 
-char* Currency = NULL;
-int Timeframe;
+char* currency = NULL;
+int timeframe;
+ProgramFlow flow;
+bool assigned = false;
+
 
 EXPORT void InitStrategy() {
   StrategyFunctions::StrategyShortName("ObjectsTest");
   StrategyFunctions::StrategyDescription("Test of moving objects");
 
-  StrategyFunctions::RegOption("Currency", ot_Currency, &Currency);
+  StrategyFunctions::RegOption("Currency", ot_Currency, &currency);
 
-  StrategyFunctions::RegOption("Timeframe", ot_TimeFrame, &Timeframe);
-  Timeframe = PERIOD_M15;
+  StrategyFunctions::RegOption("Timeframe", ot_TimeFrame, &timeframe);
 }
 
 EXPORT void DoneStrategy() {
-  free(Currency);
+  free(currency);
 }
 
 EXPORT void ResetStrategy() {}
 
 EXPORT void GetSingleTick() {
-    
-    if (TechnicalFunctions::GetNumberOfOpenPositions() < 1) {
-        double stopLoss = StrategyFunctions::Ask() - (100* StrategyFunctions::Point());
-        double stopProfit = StrategyFunctions::Ask() + (50* StrategyFunctions::Point());
-        StrategyFunctions::Buy(0.1, stopLoss, stopProfit);
-    }
-
+    if (!assigned) assigned = flow.Variables(currency, timeframe);
+    flow.Calculate();
 }
