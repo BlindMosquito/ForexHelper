@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Baseline.h"
+#include "Order.h"
 
 class ProgramFlow {
 	public:
@@ -13,6 +14,7 @@ class ProgramFlow {
 		int period;					// Period timeframe required
 		bool open;					// If order is open
 		Baseline * baseline;		// Baseline
+		Order* order;				// Sets up the orders
 
 		bool InitIndicators();		// Sets up the indicators
 

@@ -9,7 +9,7 @@ int Baseline::Handle() { return handle; }
 int Baseline::Calculate() {
 	if (!handle) return 0;
 	double base = GetValue();
-	double close = StrategyFunctions::Close(0);
+	double close = StrategyFunctions::iClose(symbol.c_str(), period, 0);
 	switch (location) {
 		case 0:
 			if (BaseTrend(base, close)) location = 1;

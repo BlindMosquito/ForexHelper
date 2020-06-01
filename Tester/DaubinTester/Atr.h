@@ -19,5 +19,6 @@ class Atr  {
 		void SetupIndicator();				// Sets up the indicator
 		double CalculateRisk();				// Get the risk in money
 		double CalculateProfit();			// Get the profit range for the start
+		double PipValue();					// Determines the pip value
 };
 

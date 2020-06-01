@@ -5,6 +5,7 @@
 
 const double PIP_LOSS = 1;
 const double PIP_PROFIT = 1;
+const double RISK = 0.02;
 
 // Constructor
 Atr::Atr(std::string symbol, int period) : symbol(symbol), period(period), handle(0) { SetupIndicator(); }
@@ -18,10 +19,17 @@ double Atr::GetValue() {
 // Get how many pips
 double Atr::GetPips() { 
 	int digits = StrategyFunctions::Digits();
-	return GetValue() * pow(10, --digits); 
+	--digits;
+	return GetValue() * pow(10, digits); 
 }
 // Get the Lot Size
 double Atr::LotSize() { 
+//	double tick_value = PipValue();
+	double tick_value = 1.0;
+	// Author from https://mql4tradingautomation.com/mql4-calculate-position-size/
+	double risk = StrategyFunctions::AccountBalance() * RISK;
+	double stopTick = GetPips() * PIP_LOSS * tick_value;
+	return risk / stopTick / 10;
 }
 
 // Risk If buying
@@ -50,3 +58,15 @@ void Atr::SetupIndicator() {
 		
 // Returns the handle
 int Atr::Handle() { return handle; }
+
+
+// Determines the pip value
+double Atr::PipValue() {
+	if (symbol.c_str() == "USDCHF") return 0.72633773;
+	if (symbol.c_str() == "USDCAD") return 0.72633773;
+	if (symbol.c_str() == "NZDJPY") return 0.92790201;
+	if (symbol.c_str() == "EURJPY") return 0.92790201;
+	if (symbol.c_str() == "USDJPY") return 0.92790201;
+	if (symbol.c_str() == "EURGBP") return 1.23456000;
+	return 1.0;
+}

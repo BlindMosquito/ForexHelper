@@ -52,26 +52,26 @@ EXPORT void __stdcall ReplaceStr(char*& dest, PChar source)
 //-----Sell-------------------------------------------------------------------
 int StrategyFunctions::Sell(double LotSize, double StopLoss, double TakeProfit)
 {
-    double tp, sl;
+    //double tp, sl;
 
-    if (TakeProfit == 0) tp = 0; else tp = Bid() - TakeProfit * Point();
-    if (StopLoss == 0) sl = 0; else sl = Bid() + StopLoss * Point();
+    //if (TakeProfit == 0) tp = 0; else tp = Bid() - TakeProfit * Point();
+    //if (StopLoss == 0) sl = 0; else sl = Bid() + StopLoss * Point();
 
     int result;
-    SendInstantOrder(Symbol(), op_Sell, LotSize, sl, tp, "", 0, result);
+    SendInstantOrder(Symbol(), op_Sell, LotSize, StopLoss, TakeProfit, "", 0, result);
     return result;
 }
 
 //-----Buy-------------------------------------------------------------------
 int StrategyFunctions::Buy(double LotSize, double StopLoss, double TakeProfit)
 {
-    double tp, sl;
+    //double tp, sl;
 
-    if (TakeProfit == 0) tp = 0; else tp = Ask() + TakeProfit * Point();
-    if (StopLoss == 0) sl = 0; else sl = Ask() - StopLoss * Point();
+    //if (TakeProfit == 0) tp = 0; else tp = Ask() + TakeProfit * Point();
+    //if (StopLoss == 0) sl = 0; else sl = Ask() - StopLoss * Point();
 
     int result;
-    SendInstantOrder(Symbol(), op_Buy, LotSize, sl, tp, "", 0, result);
+    SendInstantOrder(Symbol(), op_Buy, LotSize, StopLoss, TakeProfit, "", 0, result);
     return result;
 }
 

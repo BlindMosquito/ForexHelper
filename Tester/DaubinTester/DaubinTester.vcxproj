@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Atr.h" />
+    <ClInclude Include="Rvi.h" />
     <ClInclude Include="Baseline.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="ProgramFlow.h" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Atr.cpp" />
+    <ClCompile Include="Rvi.cpp" />
     <ClCompile Include="Baseline.cpp" />
     <ClCompile Include="ObjectsTest.cpp" />
     <ClCompile Include="Order.cpp" />
