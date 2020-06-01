@@ -1,9 +1,15 @@
-﻿  Rvi.cpp
+﻿  Atr.cpp
+  Baseline.cpp
+  ExitIndicator.cpp
+  ObjectsTest.cpp
+  Order.cpp
+  ProgramFlow.cpp
+  StrategyFunctions.cpp
+  TechnicalFunctions.cpp
 StrategyFunctions.obj : warning LNK4197: export 'ReplaceStr' specified multiple times; using first specification
-     Creating library C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.lib and object C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.exp
+     Creating library C:\Users\Drew\web\Daubin\Tester\DaubinTester\Release\DaubinTester.lib and object C:\Users\Drew\web\Daubin\Tester\DaubinTester\Release\DaubinTester.exp
   Generating code
-  0 of 231 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    15 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB not found, fall back to full compilation.
+  All 249 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  DaubinTester.vcxproj -> C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.dll
+  DaubinTester.vcxproj -> C:\Users\Drew\web\Daubin\Tester\DaubinTester\Release\DaubinTester.dll

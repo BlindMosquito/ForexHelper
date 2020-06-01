@@ -24,6 +24,8 @@ bool Order::Open() {
     TestStopLoss();
     return true;
 }
+// Returns the status
+int Order::Status() { return status; }
 
 // Buy a new currency
 bool Order::BuyOrder() {
@@ -40,7 +42,7 @@ bool Order::BuyOrder() {
     txt += std::to_string(atr->GetValue());
     StrategyFunctions::Print(txt.c_str());
     */
-    handle = StrategyFunctions::Buy(lotTemp, lossTemp, profitTemp); // Place order
+    handle = StrategyFunctions::Buy(lotTemp, lossTemp, 0); // Place order
     if (!handle) return false;                   // If order failed leave
     // Ticket has been placed by this point
     status = 1;
@@ -58,7 +60,7 @@ bool Order::SellOrder() {
     double lotTemp = atr->LotSize();             // Get Total Lots
     double lossTemp = atr->SellRisk();           // Get Stop Loss Price
     double profitTemp = atr->SellProfit();          // Get Stop Profit Price
-    handle = StrategyFunctions::Sell(lotTemp, lossTemp, profitTemp); // Place order
+    handle = StrategyFunctions::Sell(lotTemp, lossTemp, 0); // Place order
     if (!handle) return false;                   // If order failed leave
     // Ticket has been placed by this point
     status = -1;

@@ -9,6 +9,7 @@ class Order {
 		bool BuyOrder();									// Buy a new currency
 		bool SellOrder();								// Sell a new currency
 		bool CloseOrder();								// Closes the order
+		int Status();								// Returns the status
 	private:
 		std::string symbol;
 		int period;

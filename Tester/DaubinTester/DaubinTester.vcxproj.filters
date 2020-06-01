@@ -41,7 +41,7 @@
     <ClInclude Include="Order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rvi.h">
+    <ClInclude Include="ExitIndicator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -67,7 +67,7 @@
     <ClCompile Include="Order.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rvi.cpp">
+    <ClCompile Include="ExitIndicator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

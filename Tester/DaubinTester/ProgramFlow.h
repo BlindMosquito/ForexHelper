@@ -12,11 +12,14 @@ class ProgramFlow {
 	private:
 		std::string symbol;			// Symbol the program is using
 		int period;					// Period timeframe required
-		bool open;					// If order is open
 		Baseline * baseline;		// Baseline
 		Order* order;				// Sets up the orders
+		double lastChecked;			// Hour last checked
 
 		bool InitIndicators();		// Sets up the indicators
+		bool TestTime();			// Get the current hour and see if it is ready for update
+		bool TestOpen(bool);			// Test if order is open and if needs to close
+		void TestNew(bool);				// Test if ready for new order
 
 };
 
