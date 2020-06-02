@@ -12,6 +12,6 @@ class Baseline {
 		int handle;
 		int location;
 		double GetValue();
-		int BaseTrend(double base, double close);
+		bool BaseTrend(double base, double close);
 };
 

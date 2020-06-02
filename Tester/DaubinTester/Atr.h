@@ -11,12 +11,9 @@ class Atr  {
 		double SellRisk();					// Risk If Selling
 		double BuyProfit();					// Start of Profit if buying
 		double SellProfit();				// Start of Profit if selling
-		int Handle();						// Returns the handle
 	private:
 		std::string symbol;
 		int period;
-		int handle;
-		void SetupIndicator();				// Sets up the indicator
 		double CalculateRisk();				// Get the risk in money
 		double CalculateProfit();			// Get the profit range for the start
 		double PipValue();					// Determines the pip value

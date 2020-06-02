@@ -4,17 +4,14 @@
 #include "StrategyFunctions.h"
 
 const double PIP_LOSS = 1.5;
-const double PIP_PROFIT = 1;
+const double PIP_PROFIT = .5;
 const double RISK = 0.02;
 
 // Constructor
-Atr::Atr(std::string symbol, int period) : symbol(symbol), period(period), handle(0) { SetupIndicator(); }
+Atr::Atr(std::string symbol, int period) : symbol(symbol), period(period) { }
 
 // Gets the value for the indicator
 double Atr::GetValue() {
-	/*if (!handle) return 0;
-	return StrategyFunctions::GetIndicatorValue(handle, 0, 1);
-	*/
 	int count = 8;
 	++count;
 	double sum = 0;
@@ -60,16 +57,6 @@ double Atr::CalculateRisk() { return GetValue() * PIP_LOSS; }
 
 // Get the profit range for the start
 double Atr::CalculateProfit() { return GetValue() * PIP_PROFIT; }
-
-
-// Sets up the indicator
-void Atr::SetupIndicator() {
-	//handle = StrategyFunctions::CreateIndicator(symbol.c_str(), period, "ATR", "14;Close");
-	handle = 1;
-}
-		
-// Returns the handle
-int Atr::Handle() { return handle; }
 
 
 // Determines the pip value

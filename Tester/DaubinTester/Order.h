@@ -5,9 +5,9 @@ class Order {
 	public:
 		Order(std::string symbol, int period);		// Constructor
 		~Order();									// Deconstructor
-		bool Open();								// Is there an open order
-		bool BuyOrder();									// Buy a new currency
-		bool SellOrder();								// Sell a new currency
+		bool Open(Atr * atr, bool canEdit);								// Is there an open order
+		bool BuyOrder(Atr * atr);									// Buy a new currency
+		bool SellOrder(Atr * atr);								// Sell a new currency
 		bool CloseOrder();								// Closes the order
 		int Status();								// Returns the status
 	private:
@@ -19,8 +19,8 @@ class Order {
 		double stopLoss;							// Stop loss
 		double takeProfit;							// Take Proffit
 		double lotSize;								// Lot Size
-		Atr* atr;									// Used to check the Atr for info
 		void ResetVariables();						// Resets all the variables
-		bool TestStopLoss();						// Tests the stop loss and if it needs to move
+		bool TestStopBuy(Atr * atr);						// Tests the stop loss and if it needs to move
+		bool TestStopSell(Atr * atr);						// Tests the stop loss and if it needs to move
 };
 

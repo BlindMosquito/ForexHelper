@@ -2,6 +2,7 @@
 #include <string>
 #include "Baseline.h"
 #include "Order.h"
+#include "Atr.h"
 
 class ProgramFlow {
 	public:
@@ -14,6 +15,8 @@ class ProgramFlow {
 		int period;					// Period timeframe required
 		Baseline * baseline;		// Baseline
 		Order* order;				// Sets up the orders
+		Atr* atr;
+
 		double lastChecked;			// Hour last checked
 
 		bool InitIndicators();		// Sets up the indicators

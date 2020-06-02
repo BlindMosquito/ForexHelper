@@ -3,11 +3,14 @@
 
 
 // Static Function. true for buy if bought, or false for sold. Will return True if time to sell or false if not ready
-bool ExitIndicator::Calculate(std::string symbol, int period, bool buy) {
+bool ExitIndicator::Calculate(std::string symbol, int period, bool buy, Atr * atr) {
+	if (!atr) return false;
+	double dist = atr->GetValue();
+	dist /= 8;
 	bool shouldClose = false;
 	double currentClose = StrategyFunctions::iClose(symbol.c_str(), period, 1);
 	double previousClose = StrategyFunctions::iOpen(symbol.c_str(), period, 2);
-	if (buy && currentClose < previousClose) shouldClose = true;
-	else if (!buy && currentClose > previousClose) shouldClose = true;
+	if (buy && currentClose - dist < previousClose) shouldClose = true;
+	else if (!buy && currentClose + dist > previousClose) shouldClose = true;
 	return shouldClose;
 }

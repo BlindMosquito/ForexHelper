@@ -4,12 +4,15 @@
 #include <ctime>
 
 // Constructor
-ProgramFlow::ProgramFlow() : period(0), baseline(NULL), order(NULL), lastChecked(0) { symbol = std::string(); }
+ProgramFlow::ProgramFlow() : period(0), baseline(NULL), order(NULL), atr(NULL), lastChecked(0) { 
+	symbol = std::string(); 
+}
 
 // Deconstructor
 ProgramFlow::~ProgramFlow() {
 	if (baseline) delete baseline;
 	if (order) delete order;
+	if (atr) delete atr;
 }
 
 // Checks if variables are set yet
@@ -35,6 +38,7 @@ bool ProgramFlow::InitIndicators() {
 	if (!baseline) baseline = new Baseline(symbol, period);
 	if (!baseline->Handle()) return false;
 	if (!order) order = new Order(symbol, period);
+	if (!atr) atr = new Atr(symbol, period);
 	return true;
 }
 
@@ -47,11 +51,11 @@ bool ProgramFlow::TestTime() {
 }
 // Test if order is open and if needs to close
 bool ProgramFlow::TestOpen(bool newHour) {
-	if (!order->Open()) return false;		// If not open then leave
+	if (!order->Open(atr, newHour)) return false;		// If not open then leave
 	if (!newHour) return true;			// If not enough time has passed then leave with order open
 	bool close = false;
 	int status = order->Status();
-	if (!ExitIndicator::Calculate(symbol, period, (status == 1))) return true;	// Not ready to sell if false is returned
+	if (!ExitIndicator::Calculate(symbol, period, (status == 1), atr)) return true;	// Not ready to sell if false is returned
 	order->CloseOrder();
 	return false;
 }
@@ -59,6 +63,6 @@ bool ProgramFlow::TestOpen(bool newHour) {
 void ProgramFlow::TestNew(bool newHour) {
 	if (!newHour) return;
 	int status = baseline->Calculate();
-	if (status == 1) order->BuyOrder();
-	else if (status == -1) order->SellOrder();
+	if (status == 1) order->BuyOrder(atr);
+	else if (status == -1) order->SellOrder(atr);
 }

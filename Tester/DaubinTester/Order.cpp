@@ -5,31 +5,30 @@
 
 // Constructor
 Order::Order(std::string symbol, int period) : symbol(symbol), period(period) { 
-    ResetVariables();
-	atr = new Atr(symbol, period);
-}
+    ResetVariables();}
 // Deconstructor
-Order::~Order() {
-	if (atr) delete atr;
-	if (handle) CloseOrder();
+Order::~Order() {	
+    if (handle) CloseOrder();
 }
 
 // Is there an open order
-bool Order::Open() {
-	if (!handle) return false;
+bool Order::Open(Atr * atr, bool canEdit) {
+	if (!handle || !atr) return false;
     if (StrategyFunctions::OrderClosed(handle)) {
         ResetVariables();
         return false;
-    } 
-    TestStopLoss();
+    }
+    if (!canEdit) return true;
+    if(status > 0) TestStopBuy(atr);
+    else TestStopBuy(atr);
     return true;
 }
 // Returns the status
 int Order::Status() { return status; }
 
 // Buy a new currency
-bool Order::BuyOrder() {
-	if (handle) return true;
+bool Order::BuyOrder(Atr * atr) {
+	if (handle || !atr) return true;
     double ask = StrategyFunctions::Ask();  // Get Ask Price
     double lotTemp = atr->LotSize();             // Get Total Lots
     double lossTemp = atr->BuyRisk();           // Get Stop Loss Price
@@ -47,8 +46,8 @@ bool Order::BuyOrder() {
 }
 
 // Sell a new currency
-bool Order::SellOrder() {
-	if (handle) return true;
+bool Order::SellOrder(Atr * atr) {
+	if (handle || !atr) return true;
     double bid = StrategyFunctions::Bid();  // Get Ask Price
     double lotTemp = atr->LotSize();             // Get Total Lots
     double lossTemp = atr->SellRisk();           // Get Stop Loss Price
@@ -85,7 +84,29 @@ void Order::ResetVariables() {
 }
 
 // Tests the stop loss and if it needs to move
-bool Order::TestStopLoss() {
-    return false;
+bool Order::TestStopBuy(Atr * atr) {
+    double current = StrategyFunctions::Bid();
+    if (current < takeProfit) return false;
+    double pips = atr->GetValue();
+    double fract = pips / 6;
+    pips = takeProfit - pips;
+    if (pips < orderPrice) pips = orderPrice + fract;
+    if (!StrategyFunctions::ModifyOrder(handle, 0, pips, 0)) return false;
+    stopLoss = pips;
+    takeProfit = atr->BuyProfit();
+    return true;
 }
 
+// Tests the stop loss and if it needs to move
+bool Order::TestStopSell(Atr* atr) {
+	double current = StrategyFunctions::Ask();
+    if (current > takeProfit) return false;
+    double pips = atr->GetValue();
+    double fract = pips / 6;
+    pips = takeProfit + pips;
+    if (pips > orderPrice) pips = orderPrice - fract;
+    if (!StrategyFunctions::ModifyOrder(handle, 0, pips, 0)) return false;
+    stopLoss = pips;
+    takeProfit = atr->SellProfit();
+    return true;
+}

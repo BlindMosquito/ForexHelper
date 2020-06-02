@@ -27,7 +27,7 @@ int Baseline::Calculate() {
 	return location;
 }
 
-int Baseline::BaseTrend(double base, double close) {
+bool Baseline::BaseTrend(double base, double close) {
 	if (base < close) return true;
 	return false;
 }
