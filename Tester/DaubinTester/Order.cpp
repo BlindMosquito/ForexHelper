@@ -34,15 +34,8 @@ bool Order::BuyOrder() {
     double lotTemp = atr->LotSize();             // Get Total Lots
     double lossTemp = atr->BuyRisk();           // Get Stop Loss Price
     double profitTemp = atr->BuyProfit();          // Get Stop Profit Price
-    /*std::string txt = "\n LotSize: ";
-    txt += std::to_string(lotTemp);
-    txt += " BuyRisk: ";
-    txt += std::to_string(lossTemp);
-    txt += " ATR: ";
-    txt += std::to_string(atr->GetValue());
-    StrategyFunctions::Print(txt.c_str());
-    */
-    handle = StrategyFunctions::Buy(lotTemp, lossTemp, 0); // Place order
+    if (lotTemp > 3) lotTemp = 1;
+    handle = StrategyFunctions::Buy(lotTemp, lossTemp, 0, std::to_string(atr->GetValue()).c_str()); // Place order
     if (!handle) return false;                   // If order failed leave
     // Ticket has been placed by this point
     status = 1;
@@ -60,7 +53,8 @@ bool Order::SellOrder() {
     double lotTemp = atr->LotSize();             // Get Total Lots
     double lossTemp = atr->SellRisk();           // Get Stop Loss Price
     double profitTemp = atr->SellProfit();          // Get Stop Profit Price
-    handle = StrategyFunctions::Sell(lotTemp, lossTemp, 0); // Place order
+    if (lotTemp > 3) lotTemp = 1;
+    handle = StrategyFunctions::Sell(lotTemp, lossTemp, 0, std::to_string(atr->GetValue()).c_str()); // Place order
     if (!handle) return false;                   // If order failed leave
     // Ticket has been placed by this point
     status = -1;

@@ -9,7 +9,7 @@ int Baseline::Handle() { return handle; }
 int Baseline::Calculate() {
 	if (!handle) return 0;
 	double base = GetValue();
-	double close = StrategyFunctions::iClose(symbol.c_str(), period, 0);
+	double close = StrategyFunctions::iClose(symbol.c_str(), period, 1);
 	switch (location) {
 		case 0:
 			if (BaseTrend(base, close)) location = 1;
@@ -28,13 +28,13 @@ int Baseline::Calculate() {
 }
 
 int Baseline::BaseTrend(double base, double close) {
-	if (base < close) return false;
-	return true;
+	if (base < close) return true;
+	return false;
 }
 
 // Sets up the indicator
 void Baseline::SetupIndicator() { 
-	handle = StrategyFunctions::CreateIndicator(symbol.c_str(), period, "MovingAverage", "8;0;0;Simple (SMA);Close"); 
+	handle = StrategyFunctions::CreateIndicator(symbol.c_str(), period, "MovingAverage", "8;-1;0;Simple (SMA);Close"); 
 }
 
 // Gets the value for the indicator

@@ -485,10 +485,10 @@ struct TInterfaceProcRec {
 class __declspec(dllexport)  StrategyFunctions {
 	public:
         //-----Sell-------------------------------------------------------------------
-        static int Sell(double LotSize, double StopLoss, double TakeProfit);
+        static int Sell(double LotSize, double StopLoss, double TakeProfit, const char * comment = "");
 
         //-----Buy-------------------------------------------------------------------
-        static int Buy(double LotSize, double StopLoss, double TakeProfit);
+        static int Buy(double LotSize, double StopLoss, double TakeProfit, const char * comment = "");
 
         //-----Get currency information-----------------------------------------------
         static bool GetCurrencyInfo(const char * Symbol, PCurrencyInfo& info);

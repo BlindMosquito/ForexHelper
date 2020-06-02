@@ -23,6 +23,7 @@ bool ProgramFlow::Variables(std::string symbol, int period) {
 // Each iteration this is called
 void ProgramFlow::Calculate() {
 	if (!InitIndicators()) return;
+	if (!lastChecked) { TestTime(); return; }
 	bool newHour = TestTime();				// Sees if an hour has passed since last check
 	if(TestOpen(newHour)) return;			// If there is an open order then nothing left to do
 	TestNew(newHour);						// Test if ready for new order
@@ -40,7 +41,6 @@ bool ProgramFlow::InitIndicators() {
 // Get the current hour and see if it is ready for update
 bool ProgramFlow::TestTime() {
 	double current = StrategyFunctions::iClose(symbol.c_str(), period, 1);
-	StrategyFunctions::Print(std::to_string(current).c_str());
 	if (lastChecked == current) return false;
 	lastChecked = current;
 	return true;
