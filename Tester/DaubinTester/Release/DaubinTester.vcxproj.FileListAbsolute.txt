@@ -1,2 +1,2 @@
-C:\Users\Drew\web\Daubin\Tester\DaubinTester\Release\DaubinTester.dll
 C:\Users\Drew\AppData\Roaming\MetaQuotes\Terminal\C142B020C05FAD9EEC4BE1375F709241\MQL4\Experts\Daubin\Tester\DaubinTester\Release\DaubinTester.dll
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\Release\DaubinTester.dll

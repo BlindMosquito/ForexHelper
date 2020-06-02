@@ -4,7 +4,7 @@
 class Atr  {
 	public:
 		Atr(std::string, int);				// Constructor
-		double GetValue();					// Gets the value for the indicator
+		double GetValue(int count = 8);					// Gets the value for the indicator
 		double GetPips();					// Get how many pips
 		double LotSize();					// Get the Lot Size
 		double BuyRisk();					// Risk If buying

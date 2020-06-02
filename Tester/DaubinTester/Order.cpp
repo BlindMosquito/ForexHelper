@@ -1,6 +1,7 @@
 #include "Order.h"
 #include "StrategyFunctions.h"
 #include "TechnicalFunctions.h"
+#include "ExitIndicator.h"
 #include <string>
 
 // Constructor
@@ -20,7 +21,7 @@ bool Order::Open(Atr * atr, bool canEdit) {
     }
     if (!canEdit) return true;
     if(status > 0) TestStopBuy(atr);
-    else TestStopBuy(atr);
+    else TestStopSell(atr);
     return true;
 }
 // Returns the status
@@ -34,7 +35,11 @@ bool Order::BuyOrder(Atr * atr) {
     double lossTemp = atr->BuyRisk();           // Get Stop Loss Price
     double profitTemp = atr->BuyProfit();          // Get Stop Profit Price
     if (lotTemp > 3) lotTemp = 1;
-    handle = StrategyFunctions::Buy(lotTemp, lossTemp, 0, std::to_string(atr->GetValue()).c_str()); // Place order
+    double volume = atr->GetValue(2) - atr->GetValue(14);
+    int tm = ExitIndicator::LastHour(symbol, period);
+    if (tm < 4 || tm > 16) return false;
+    if (volume < 0) return false;
+    handle = StrategyFunctions::Buy(lotTemp, lossTemp, 0, std::to_string(volume).c_str()); // Place order
     if (!handle) return false;                   // If order failed leave
     // Ticket has been placed by this point
     status = 1;
@@ -53,7 +58,11 @@ bool Order::SellOrder(Atr * atr) {
     double lossTemp = atr->SellRisk();           // Get Stop Loss Price
     double profitTemp = atr->SellProfit();          // Get Stop Profit Price
     if (lotTemp > 3) lotTemp = 1;
-    handle = StrategyFunctions::Sell(lotTemp, lossTemp, 0, std::to_string(atr->GetValue()).c_str()); // Place order
+    double volume = atr->GetValue(2) - atr->GetValue(14);
+    if (volume < 0) return false;
+    int tm = ExitIndicator::LastHour(symbol, period);
+    if (tm < 4 || tm > 16) return false;
+    handle = StrategyFunctions::Sell(lotTemp, lossTemp, 0, std::to_string(volume).c_str()); // Place order
     if (!handle) return false;                   // If order failed leave
     // Ticket has been placed by this point
     status = -1;
@@ -85,7 +94,15 @@ void Order::ResetVariables() {
 
 // Tests the stop loss and if it needs to move
 bool Order::TestStopBuy(Atr * atr) {
-    double current = StrategyFunctions::Bid();
+    double open = StrategyFunctions::iOpen(symbol.c_str(), period, 1);
+    double close = StrategyFunctions::iClose(symbol.c_str(), period, 1);
+    if (close < open) return false;
+    double change = stopLoss + (close - open);
+    if (!StrategyFunctions::ModifyOrder(handle, 0, change, 0)) return false;
+    stopLoss = change;
+    return true;
+
+    /*double current = StrategyFunctions::Bid();
     if (current < takeProfit) return false;
     double pips = atr->GetValue();
     double fract = pips / 6;
@@ -95,10 +112,20 @@ bool Order::TestStopBuy(Atr * atr) {
     stopLoss = pips;
     takeProfit = atr->BuyProfit();
     return true;
+    */
 }
 
 // Tests the stop loss and if it needs to move
 bool Order::TestStopSell(Atr* atr) {
+    double open = StrategyFunctions::iOpen(symbol.c_str(), period, 1);
+    double close = StrategyFunctions::iClose(symbol.c_str(), period, 1);
+    if (close > open) return false;
+    double change = stopLoss - (open - close);
+    if (!StrategyFunctions::ModifyOrder(handle, 0, change, 0)) return false;
+    stopLoss = change;
+    return true;
+
+    /*
 	double current = StrategyFunctions::Ask();
     if (current > takeProfit) return false;
     double pips = atr->GetValue();
@@ -109,4 +136,5 @@ bool Order::TestStopSell(Atr* atr) {
     stopLoss = pips;
     takeProfit = atr->SellProfit();
     return true;
+    */
 }

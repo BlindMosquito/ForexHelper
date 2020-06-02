@@ -5,14 +5,13 @@
 
 const double PIP_LOSS = 1.5;
 const double PIP_PROFIT = .5;
-const double RISK = 0.02;
+const double RISK = 0.03;
 
 // Constructor
 Atr::Atr(std::string symbol, int period) : symbol(symbol), period(period) { }
 
 // Gets the value for the indicator
-double Atr::GetValue() {
-	int count = 8;
+double Atr::GetValue(int count) {
 	++count;
 	double sum = 0;
 	for (int i = 1; i < count; ++i) {
