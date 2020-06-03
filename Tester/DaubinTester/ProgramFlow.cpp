@@ -55,8 +55,8 @@ bool ProgramFlow::TestOpen(bool newHour) {
 	if (!newHour) return true;			// If not enough time has passed then leave with order open
 	bool close = false;
 	int status = order->Status();
-	if (!ExitIndicator::Calculate(symbol, period, (status == 1), atr)) return true;	// Not ready to sell if false is returned
-	order->CloseOrder();
+	//if (!ExitIndicator::Calculate(symbol, period, (status == 1), atr)) return true;	// Not ready to sell if false is returned
+	//order->CloseOrder();
 	return false;
 }
 // Test if ready for new order

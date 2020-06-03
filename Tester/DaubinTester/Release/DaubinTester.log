@@ -1,8 +1,8 @@
 ﻿  Atr.cpp
   Baseline.cpp
   ExitIndicator.cpp
-C:\Users\Drew\web\Daubin\Tester\DaubinTester\ExitIndicator.cpp(23,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Drew\web\Daubin\Tester\DaubinTester\ExitIndicator.cpp(25,12): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\ExitIndicator.cpp(29,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Drew\web\Daubin\Tester\DaubinTester\ExitIndicator.cpp(31,12): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
   ObjectsTest.cpp
   Order.cpp
   ProgramFlow.cpp
@@ -12,6 +12,6 @@ StrategyFunctions.obj : warning LNK4197: export 'ReplaceStr' specified multiple 
      Creating library C:\Users\Drew\web\Daubin\Tester\DaubinTester\Release\DaubinTester.lib and object C:\Users\Drew\web\Daubin\Tester\DaubinTester\Release\DaubinTester.exp
   Generating code
   Previous IPDB not found, fall back to full compilation.
-  All 249 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 248 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   DaubinTester.vcxproj -> C:\Users\Drew\web\Daubin\Tester\DaubinTester\Release\DaubinTester.dll

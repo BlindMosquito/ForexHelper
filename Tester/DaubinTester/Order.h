@@ -22,5 +22,7 @@ class Order {
 		void ResetVariables();						// Resets all the variables
 		bool TestStopBuy(Atr * atr);						// Tests the stop loss and if it needs to move
 		bool TestStopSell(Atr * atr);						// Tests the stop loss and if it needs to move
+		bool SetExitBuy(Atr* atr, double open, double close);
+		bool SetExitSell(Atr* atr, double open, double close);
 };
 

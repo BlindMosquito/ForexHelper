@@ -3,9 +3,9 @@
 #include <math.h>
 #include "StrategyFunctions.h"
 
-const double PIP_LOSS = 0.5;
-const double PIP_PROFIT = .5;
-const double RISK = 0.04;
+const double PIP_LOSS = 2;
+const double PIP_PROFIT = .8;
+const double RISK = 0.02;
 
 // Constructor
 Atr::Atr(std::string symbol, int period) : symbol(symbol), period(period) { }

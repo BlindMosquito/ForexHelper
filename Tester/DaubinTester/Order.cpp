@@ -92,49 +92,96 @@ void Order::ResetVariables() {
     lotSize = 0;
 }
 
+
+bool Order::SetExitBuy(Atr* atr, double open, double close) {
+    if (open > close) return false;
+    double dist = atr->GetValue(10);
+    double lastTimeOpen = StrategyFunctions::iOpen(symbol.c_str(), period, 2);
+    double lastTimeClose = StrategyFunctions::iClose(symbol.c_str(), period, 2);
+    double beforeThatOpen = StrategyFunctions::iOpen(symbol.c_str(), period, 3);
+    double beforeThatClose = StrategyFunctions::iClose(symbol.c_str(), period, 3);
+    if (lastTimeOpen < lastTimeClose) lastTimeOpen = lastTimeClose;
+    if (lastTimeOpen < beforeThatOpen) lastTimeOpen = beforeThatOpen;
+    if (lastTimeOpen < beforeThatClose) lastTimeOpen = beforeThatClose;
+    close += dist;
+    if (lastTimeOpen > close) return false;
+    double low = StrategyFunctions::iLow(symbol.c_str(), period, 1);
+    if (low < stopLoss) return false;
+
+    if (!StrategyFunctions::ModifyOrder(handle, 0, low, 0)) return false;
+    stopLoss = low;
+    return true;
+}
+bool Order::SetExitSell(Atr* atr, double open, double close) {
+    if (open > close) return false;
+    double dist = atr->GetValue(10);
+    double lastTimeOpen = StrategyFunctions::iOpen(symbol.c_str(), period, 2);
+    double lastTimeClose = StrategyFunctions::iClose(symbol.c_str(), period, 2);
+    double beforeThatOpen = StrategyFunctions::iOpen(symbol.c_str(), period, 3);
+    double beforeThatClose = StrategyFunctions::iClose(symbol.c_str(), period, 3);
+    if (lastTimeOpen > lastTimeClose) lastTimeOpen = lastTimeClose;
+    if (lastTimeOpen > beforeThatOpen) lastTimeOpen = beforeThatOpen;
+    if (lastTimeOpen > beforeThatClose) lastTimeOpen = beforeThatClose;
+    close -= dist;
+    if (lastTimeOpen < close) return false;
+    double high = StrategyFunctions::iHigh(symbol.c_str(), period, 1);
+    if (high > stopLoss) return false;
+
+    if (!StrategyFunctions::ModifyOrder(handle, 0, high, 0)) return false;
+    stopLoss = high;
+    return true;
+}
+
 // Tests the stop loss and if it needs to move
 bool Order::TestStopBuy(Atr * atr) {
-    double open = StrategyFunctions::iOpen(symbol.c_str(), period, 1);
+    if (!atr) return false;
+    double price = StrategyFunctions::iClose(symbol.c_str(), period, 1);
+
+    if (SetExitBuy(atr, StrategyFunctions::iOpen(symbol.c_str(), period, 1), price)) return true;
+
+    if (price < takeProfit) return false;
+    price = price - takeProfit;
+    if (stopLoss > orderPrice) price += stopLoss;
+    else price += orderPrice;
+    if (!StrategyFunctions::ModifyOrder(handle, 0, price, 0)) return false;
+    stopLoss = price;
+    takeProfit = atr->BuyProfit();
+    return true;
+
+
+    /*double open = StrategyFunctions::iOpen(symbol.c_str(), period, 1);
     double close = StrategyFunctions::iClose(symbol.c_str(), period, 1);
     if (close < open) return false;
     double change = stopLoss + (close - open);
     if (!StrategyFunctions::ModifyOrder(handle, 0, change, 0)) return false;
     stopLoss = change;
     return true;
-
-    /*double current = StrategyFunctions::Bid();
-    if (current < takeProfit) return false;
-    double pips = atr->GetValue();
-    double fract = pips / 6;
-    pips = takeProfit - pips;
-    if (pips < orderPrice) pips = orderPrice + fract;
-    if (!StrategyFunctions::ModifyOrder(handle, 0, pips, 0)) return false;
-    stopLoss = pips;
-    takeProfit = atr->BuyProfit();
-    return true;
     */
 }
 
 // Tests the stop loss and if it needs to move
 bool Order::TestStopSell(Atr* atr) {
+    if (!atr) return false;
+    double price = StrategyFunctions::iClose(symbol.c_str(), period, 1);
+
+    if (SetExitSell(atr, StrategyFunctions::iOpen(symbol.c_str(), period, 1), price)) return true;
+
+    if (price > takeProfit) return false;
+    price = takeProfit - price;
+    if (stopLoss < orderPrice) price -= stopLoss;
+    else price -= orderPrice;
+    if (!StrategyFunctions::ModifyOrder(handle, 0, price, 0)) return false;
+    stopLoss = price;
+    takeProfit = atr->SellProfit();
+    return true;
+
+    /*
     double open = StrategyFunctions::iOpen(symbol.c_str(), period, 1);
     double close = StrategyFunctions::iClose(symbol.c_str(), period, 1);
     if (close > open) return false;
     double change = stopLoss - (open - close);
     if (!StrategyFunctions::ModifyOrder(handle, 0, change, 0)) return false;
     stopLoss = change;
-    return true;
-
-    /*
-	double current = StrategyFunctions::Ask();
-    if (current > takeProfit) return false;
-    double pips = atr->GetValue();
-    double fract = pips / 6;
-    pips = takeProfit + pips;
-    if (pips > orderPrice) pips = orderPrice - fract;
-    if (!StrategyFunctions::ModifyOrder(handle, 0, pips, 0)) return false;
-    stopLoss = pips;
-    takeProfit = atr->SellProfit();
     return true;
     */
 }
